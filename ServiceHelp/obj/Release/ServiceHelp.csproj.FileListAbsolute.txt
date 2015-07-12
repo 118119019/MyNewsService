@@ -1,0 +1,8 @@
+E:\2015work\MyNewsService\ServiceHelp\bin\Release\ServiceHelp.dll
+E:\2015work\MyNewsService\ServiceHelp\bin\Release\ServiceHelp.pdb
+E:\2015work\MyNewsService\ServiceHelp\bin\Release\NLog.dll
+E:\2015work\MyNewsService\ServiceHelp\bin\Release\Quartz.dll
+E:\2015work\MyNewsService\ServiceHelp\bin\Release\Quartz.pdb
+E:\2015work\MyNewsService\ServiceHelp\bin\Release\Quartz.xml
+E:\2015work\MyNewsService\ServiceHelp\obj\Release\ServiceHelp.dll
+E:\2015work\MyNewsService\ServiceHelp\obj\Release\ServiceHelp.pdb

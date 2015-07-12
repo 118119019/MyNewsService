@@ -12,3 +12,12 @@ E:\2015work\MyNewsService\TestConsole\obj\Debug\TestConsole.pdb
 E:\2015work\MyNewsService\TestConsole\bin\Debug\HtmlAgilityPack.dll
 E:\2015work\MyNewsService\TestConsole\bin\Debug\HtmlAgilityPack.pdb
 E:\2015work\MyNewsService\TestConsole\bin\Debug\HtmlAgilityPack.xml
+E:\2015work\MyNewsService\TestConsole\bin\Debug\Common.Logging.Core.dll
+E:\2015work\MyNewsService\TestConsole\bin\Debug\Common.Logging.dll
+E:\2015work\MyNewsService\TestConsole\bin\Debug\Quartz.dll
+E:\2015work\MyNewsService\TestConsole\bin\Debug\Common.Logging.pdb
+E:\2015work\MyNewsService\TestConsole\bin\Debug\Common.Logging.xml
+E:\2015work\MyNewsService\TestConsole\bin\Debug\Common.Logging.Core.pdb
+E:\2015work\MyNewsService\TestConsole\bin\Debug\Common.Logging.Core.xml
+E:\2015work\MyNewsService\TestConsole\bin\Debug\Quartz.pdb
+E:\2015work\MyNewsService\TestConsole\bin\Debug\Quartz.xml

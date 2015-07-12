@@ -1,0 +1,16 @@
+工作执行Hello World! - Sun, 12 Jul 2015 17:01:00 GMT
+SimpleJob: jobGroup1.jobName1 executing at Sun, 12 Jul 2015 17:01:00 GMT
+SimpleJob: msg: 
+------- Initialization Complete -----------
+------- Not Scheduling any Jobs - relying on XML definitions --
+------- Starting Scheduler ----------------
+------- Started Scheduler -----------------
+工作执行Hello World! - Sun, 12 Jul 2015 17:04:05 GMT
+SimpleJob: jobGroup1.jobName1 executing at Sun, 12 Jul 2015 17:04:05 GMT
+SimpleJob: msg: 
+工作执行Hello World! - Sun, 12 Jul 2015 17:05:05 GMT
+SimpleJob: jobGroup1.jobName1 executing at Sun, 12 Jul 2015 17:05:05 GMT
+SimpleJob: msg: 
+工作执行Hello World! - Sun, 12 Jul 2015 17:06:05 GMT
+SimpleJob: jobGroup1.jobName1 executing at Sun, 12 Jul 2015 17:06:05 GMT
+SimpleJob: msg: 
