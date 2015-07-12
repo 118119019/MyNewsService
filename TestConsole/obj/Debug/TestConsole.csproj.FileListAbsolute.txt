@@ -1,0 +1,14 @@
+E:\2015work\MyNewsService\TestConsole\bin\Debug\TestConsole.exe.config
+E:\2015work\MyNewsService\TestConsole\bin\Debug\TestConsole.exe
+E:\2015work\MyNewsService\TestConsole\bin\Debug\TestConsole.pdb
+E:\2015work\MyNewsService\TestConsole\bin\Debug\CommonService.dll
+E:\2015work\MyNewsService\TestConsole\bin\Debug\CommonUtility.dll
+E:\2015work\MyNewsService\TestConsole\bin\Debug\net91com.Core.dll
+E:\2015work\MyNewsService\TestConsole\bin\Debug\Newtonsoft.Json.dll
+E:\2015work\MyNewsService\TestConsole\bin\Debug\NLog.dll
+E:\2015work\MyNewsService\TestConsole\obj\Debug\TestConsole.csprojResolveAssemblyReference.cache
+E:\2015work\MyNewsService\TestConsole\obj\Debug\TestConsole.exe
+E:\2015work\MyNewsService\TestConsole\obj\Debug\TestConsole.pdb
+E:\2015work\MyNewsService\TestConsole\bin\Debug\HtmlAgilityPack.dll
+E:\2015work\MyNewsService\TestConsole\bin\Debug\HtmlAgilityPack.pdb
+E:\2015work\MyNewsService\TestConsole\bin\Debug\HtmlAgilityPack.xml
