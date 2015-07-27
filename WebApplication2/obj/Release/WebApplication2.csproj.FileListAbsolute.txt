@@ -24,3 +24,4 @@ E:\2015work\MyNewsService\WebApplication2\bin\Quartz.xml
 E:\2015work\MyNewsService\WebApplication2\obj\Release\WebApplication2.csprojResolveAssemblyReference.cache
 E:\2015work\MyNewsService\WebApplication2\obj\Release\WebApplication2.dll
 E:\2015work\MyNewsService\WebApplication2\obj\Release\WebApplication2.pdb
+E:\2015work\MyNewsService\WebApplication2\bin\Newtonsoft.Json.dll

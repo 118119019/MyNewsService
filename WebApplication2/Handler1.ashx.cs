@@ -1,5 +1,6 @@
 ﻿using CommonService.Serilizer;
 using HtmlAgilityPack;
+using ServiceHelp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,14 +34,24 @@ namespace WebApplication2
                     articleJson.Title = div.SelectSingleNode("h1").InnerText;
                     div = doc.DocumentNode.SelectSingleNode("//div[@id='extra']");
                     articleJson.date = div.SelectSingleNode("span[@class='date']").InnerText.Replace("阅读全文", "");
+
+
                     var str = SerilizeService<ArticleJson>.CreateSerilizer(Serilize_Type.Json).Serilize(articleJson);
-                    Response.Output.Write(str);
+
+
+                    Response.Output.Write(HelpObjectService.Serialize(articleJson));
+
+                    //byte[] jsons = HelpObjectService.Serialize(articleJson);
+
+                    //Response.BinaryWrite(jsons);
+                    //Response.Flush();
+                    //Response.Close(); 
                 }
                 catch (Exception ex)
                 {
-                     
-                } 
-            } 
+
+                }
+            }
             Response.End();
         }
 
@@ -51,7 +62,16 @@ namespace WebApplication2
                 return false;
             }
         }
+
+
+
     }
+
+
+
+
+
+    [Serializable]
     public class ArticleJson
     {
         public string Title { get; set; }

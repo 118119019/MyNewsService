@@ -6,4 +6,3 @@ E:\2015work\MyNewsService\ServiceHelp\bin\Debug\Quartz.pdb
 E:\2015work\MyNewsService\ServiceHelp\bin\Debug\Quartz.xml
 E:\2015work\MyNewsService\ServiceHelp\obj\Debug\ServiceHelp.dll
 E:\2015work\MyNewsService\ServiceHelp\obj\Debug\ServiceHelp.pdb
-E:\2015work\MyNewsService\ServiceHelp\obj\Debug\ServiceHelp.csprojResolveAssemblyReference.cache

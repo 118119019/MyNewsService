@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelpObjectService.cs" />
     <Compile Include="MySchedulerService.cs" />
     <Compile Include="MailSendFunc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
