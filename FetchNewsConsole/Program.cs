@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DataAccess;
+using DataAccess.SqlParam;
+using News.DataAccess.Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +20,9 @@ namespace FetchNewsConsole
 
                 try
                 {
-                    Logger.WriteInfo(s.GetType().Name + "开始新闻");
+                    Logger.WriteInfo(s.GetType().Name + "开始新闻抓取");
                     Fetch();
-                    Logger.WriteInfo(s.GetType().Name + "结束新闻");
+                    Logger.WriteInfo(s.GetType().Name + "结束新闻抓取");
                 }
                 catch (Exception ex)
                 {
@@ -31,9 +34,20 @@ namespace FetchNewsConsole
             }
         }
 
+
+        protected static string Conn = ConfigurationManager.ConnectionStrings["LinstenNews"].ConnectionString;
         private static void Fetch()
         {
-            //更新站点分类列表
+            var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
+            param.where.where.Add(SqlParamHelper.CreateWhere(
+                PARAM_TYPE.EQUATE, LINK_TYPE.AND, "Status", "1"));
+            var siteCfgAccess = new SiteConfigAccess(Conn);
+            var siteList = siteCfgAccess.Load(param);
+            foreach (var site in siteList)    //更新站点分类列表
+            {
+             //   CommonService.HttpResponse<list
+            }
+
             //获取分类列表
             //根据分类列表抓取对应新闻列表
             //保存新闻列表

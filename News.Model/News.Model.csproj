@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3EF05D52-F7E9-4397-8486-51B5D67BD694}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{D70506B2-5A41-4804-BF2B-8191197E7D1D}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FetchNewsConsole</RootNamespace>
-    <AssemblyName>FetchNewsConsole</AssemblyName>
+    <RootNamespace>News.Model</RootNamespace>
+    <AssemblyName>News.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,23 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AspNetPager">
-      <HintPath>..\lib\AspNetPager.dll</HintPath>
-    </Reference>
-    <Reference Include="CommonService">
-      <HintPath>..\lib\CommonService.dll</HintPath>
-    </Reference>
-    <Reference Include="CommonUtility">
-      <HintPath>..\lib\CommonUtility.dll</HintPath>
-    </Reference>
-    <Reference Include="DataAccess">
-      <HintPath>..\lib\DataAccess.dll</HintPath>
-    </Reference>
-    <Reference Include="net91com.Core">
-      <HintPath>..\lib\net91com.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,18 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logger.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\News.DataAccess\News.DataAccess.csproj">
-      <Project>{88c9d14b-7251-4dbf-93f1-fdb30b636e8b}</Project>
-      <Name>News.DataAccess</Name>
-    </ProjectReference>
+    <Compile Include="TongHuaShun\xmlColumn.cs" />
+    <Compile Include="TongHuaShun\xmlIndex.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
