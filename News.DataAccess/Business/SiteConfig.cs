@@ -12,5 +12,6 @@ namespace News.DataAccess.Business
         public string SiteName { get; set; }
         public string IndexUrl { get; set; }
         public int Status { get; set; }
+        public string ChannelUrl { get; set; }
     }
 }

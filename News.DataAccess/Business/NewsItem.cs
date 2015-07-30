@@ -14,9 +14,10 @@ namespace News.DataAccess.Business
         public int SourceSite { get; set; }
         public int CategoryId { get; set; }
         public DateTime CreateTime { get; set; }
-        public int FromSite { get; set; }
+        public string FromSite { get; set; }
         public string ImgUrl { get; set; }
         public string SourceUrl { get; set; }
         public string NewsContent { get; set; }
+        public string ChannelName { get; set; }
     }
 }

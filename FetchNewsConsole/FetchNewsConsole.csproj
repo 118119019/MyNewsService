@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Dev</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -44,6 +44,9 @@
     <Reference Include="DataAccess">
       <HintPath>..\lib\DataAccess.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="net91com.Core">
       <HintPath>..\lib\net91com.Core.dll</HintPath>
     </Reference>
@@ -68,6 +71,10 @@
     <ProjectReference Include="..\News.DataAccess\News.DataAccess.csproj">
       <Project>{88c9d14b-7251-4dbf-93f1-fdb30b636e8b}</Project>
       <Name>News.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\News.Model\News.Model.csproj">
+      <Project>{d70506b2-5a41-4804-bf2b-8191197e7d1d}</Project>
+      <Name>News.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
