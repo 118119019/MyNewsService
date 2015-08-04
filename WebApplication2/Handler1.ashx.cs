@@ -17,7 +17,7 @@ namespace WebApplication2
 
         public void ProcessRequest(HttpContext context)
         {
-            context.Response.ContentType = "text/plain";
+            context.Response.ContentType = "application/json";
             var Response = context.Response;
             if (context.Request["url"] != null)
             {
@@ -40,6 +40,8 @@ namespace WebApplication2
 
 
                     Response.Output.Write(HelpObjectService.Serialize(articleJson));
+
+                 
 
                     //byte[] jsons = HelpObjectService.Serialize(articleJson);
 
