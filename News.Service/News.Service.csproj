@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D70506B2-5A41-4804-BF2B-8191197E7D1D}</ProjectGuid>
+    <ProjectGuid>{CE398629-B304-430C-AAE5-27245D3F1560}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>News.Model</RootNamespace>
-    <AssemblyName>News.Model</AssemblyName>
+    <RootNamespace>News.Service</RootNamespace>
+    <AssemblyName>News.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Dev</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -30,10 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Model">
-      <HintPath>..\lib\Model.dll</HintPath>
+    <Reference Include="CommonService">
+      <HintPath>..\lib\CommonService.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonUtility">
+      <HintPath>..\lib\CommonUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="DataAccess">
+      <HintPath>..\lib\DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="net91com.Core, Version=1.0.4596.17381, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\net91com.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,12 +57,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Dongfangcaifu\ContentJson.cs" />
-    <Compile Include="Dongfangcaifu\JSON.cs" />
+    <Compile Include="Fetch\DongfangcaifuFetchService.cs" />
+    <Compile Include="Fetch\FecthIService.cs" />
+    <Compile Include="Fetch\FetchNewsManagerService.cs" />
+    <Compile Include="Fetch\TongHuaSunFetchService.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="result.cs" />
-    <Compile Include="TongHuaShun\xmlColumn.cs" />
-    <Compile Include="TongHuaShun\xmlIndex.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\News.DataAccess\News.DataAccess.csproj">
+      <Project>{88c9d14b-7251-4dbf-93f1-fdb30b636e8b}</Project>
+      <Name>News.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\News.Model\News.Model.csproj">
+      <Project>{d70506b2-5a41-4804-bf2b-8191197e7d1d}</Project>
+      <Name>News.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -94,6 +94,10 @@
       <Project>{d70506b2-5a41-4804-bf2b-8191197e7d1d}</Project>
       <Name>News.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\News.Service\News.Service.csproj">
+      <Project>{ce398629-b304-430c-aae5-27245d3f1560}</Project>
+      <Name>News.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

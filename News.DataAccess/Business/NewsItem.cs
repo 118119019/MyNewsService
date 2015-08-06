@@ -17,7 +17,9 @@ namespace News.DataAccess.Business
         public string FromSite { get; set; }
         public string ImgUrl { get; set; }
         public string SourceUrl { get; set; }
+        public string NewsText { get; set; }
         public string NewsContent { get; set; }
         public string ChannelName { get; set; }
     }
 }
+

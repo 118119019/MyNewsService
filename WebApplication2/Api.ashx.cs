@@ -37,7 +37,7 @@ namespace WebApplication2
                 int pageIndex = 1;
                 int pageCount = 10;
                 int pagenumber = 0;
-                string outString = "";
+                string outString = "";                
                 if (request["pageIndex"] != null)
                 {
                     pageIndex = int.Parse(request["pageIndex"]);
@@ -63,6 +63,11 @@ namespace WebApplication2
                         {
                             param.where.where.Add(SqlParamHelper.CreateWhere(
                                PARAM_TYPE.EQUATE, LINK_TYPE.AND, "ChannelName", request["ChannelName"]));
+                        }
+                        if (request["SourceSite"] != null) //SourceSite
+                        {
+                            param.where.where.Add(SqlParamHelper.CreateWhere(
+                               PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SourceSite", request["SourceSite"]));
                         }
 
                         List<NewsItem> list = newsItemAccess.Load(param, out count);

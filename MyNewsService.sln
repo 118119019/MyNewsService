@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetchNewsConsole", "FetchNe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.Model", "News.Model\News.Model.csproj", "{D70506B2-5A41-4804-BF2B-8191197E7D1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.Service", "News.Service\News.Service.csproj", "{CE398629-B304-430C-AAE5-27245D3F1560}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{D70506B2-5A41-4804-BF2B-8191197E7D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D70506B2-5A41-4804-BF2B-8191197E7D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D70506B2-5A41-4804-BF2B-8191197E7D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE398629-B304-430C-AAE5-27245D3F1560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE398629-B304-430C-AAE5-27245D3F1560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE398629-B304-430C-AAE5-27245D3F1560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE398629-B304-430C-AAE5-27245D3F1560}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
