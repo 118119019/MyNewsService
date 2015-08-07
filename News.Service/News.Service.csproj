@@ -42,13 +42,21 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Model.dll</HintPath>
+    </Reference>
     <Reference Include="net91com.Core, Version=1.0.4596.17381, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\net91com.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Service">
+      <HintPath>..\lib\Service.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,6 +69,10 @@
     <Compile Include="Fetch\FecthIService.cs" />
     <Compile Include="Fetch\FetchNewsManagerService.cs" />
     <Compile Include="Fetch\TongHuaSunFetchService.cs" />
+    <Compile Include="InterFace\GetChannelConfigListService.cs" />
+    <Compile Include="InterFace\GetNewsByIdService.cs" />
+    <Compile Include="InterFace\GetNewsListService.cs" />
+    <Compile Include="InterFace\NewsInterfaceServcie.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
