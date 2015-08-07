@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="163\ArticleDetail.cs" />
+    <Compile Include="163\Topic.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Dongfangcaifu\ContentJson.cs" />
     <Compile Include="Dongfangcaifu\JSON.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="TongHuaShun\xmlColumn.cs" />
     <Compile Include="TongHuaShun\xmlIndex.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
