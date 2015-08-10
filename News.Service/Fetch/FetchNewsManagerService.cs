@@ -18,6 +18,8 @@ namespace News.Service.Fetch
         protected static string dataConn = ConfigurationManager.ConnectionStrings["LinstenNews"].ConnectionString;
         protected ChannelConfigAccess chlCfgAccess = new ChannelConfigAccess(dataConn);
         protected NewsItemAccess newsItemAccess = new NewsItemAccess(dataConn);
+
+        protected List<NewsCategory> cateList;
         public virtual void UpdateSiteChl()
         {
 
@@ -28,9 +30,10 @@ namespace News.Service.Fetch
 
         }
 
-        public virtual void Fetch(SiteConfig siteCfg)
+        public virtual void Fetch(SiteConfig siteCfg, List<NewsCategory> newsCateList)
         {
             site = siteCfg;
+            cateList = newsCateList;
             UpdateSiteChl();
         }
 

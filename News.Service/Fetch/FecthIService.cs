@@ -11,6 +11,6 @@ namespace News.Service.Fetch
     {
         void UpdateSiteChl();
         void GetNewsDetail(ChannelConfig chlCfg);
-        void Fetch(SiteConfig siteCfg);
+        void Fetch(SiteConfig siteCfg, List<NewsCategory> newsCateList);
     }
 }

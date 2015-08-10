@@ -69,8 +69,10 @@
     <Compile Include="Fetch\FecthIService.cs" />
     <Compile Include="Fetch\FetchNewsManagerService.cs" />
     <Compile Include="Fetch\TongHuaSunFetchService.cs" />
+    <Compile Include="Fetch\WY163FecthService.cs" />
     <Compile Include="InterFace\GetChannelConfigListService.cs" />
     <Compile Include="InterFace\GetNewsByIdService.cs" />
+    <Compile Include="InterFace\GetNewsCategoryService.cs" />
     <Compile Include="InterFace\GetNewsListService.cs" />
     <Compile Include="InterFace\NewsInterfaceServcie.cs" />
     <Compile Include="Logger.cs" />

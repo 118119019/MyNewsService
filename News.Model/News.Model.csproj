@@ -50,9 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="163\ArticleDetail.cs" />
-    <Compile Include="163\Topic.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="wy163\ArticleDetail.cs" />
+    <Compile Include="wy163\ArticleList.cs" />
+    <Compile Include="wy163\Topic.cs" />
     <Compile Include="Dongfangcaifu\ContentJson.cs" />
     <Compile Include="Dongfangcaifu\JSON.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -36,6 +36,7 @@ namespace News.Service.Fetch
         public override void GetNewsDetail(ChannelConfig chlCfg)
         {
             var url = string.Format(site.IndexUrl, chlCfg.ChannelVal);
+            var cate = cateList.Find(p => p.CategoryName == "财经");
             try
             {
                 while (!string.IsNullOrEmpty(url))
@@ -58,6 +59,7 @@ namespace News.Service.Fetch
                         {
                             continue;
                         }
+                        newsItem.CategoryId = cate.CategoryId;
                         newsItem.Title = item.title;
                         DateTime.TryParse(item.ctime, out dt);
                         newsItem.CreateTime = dt;
@@ -101,14 +103,16 @@ namespace News.Service.Fetch
                 Logger.WriteException(string.Format("分类下抓取新闻出现异常：{0}", chlCfg.ChannelName), ex);
             }
         }
-        public override void Fetch(SiteConfig siteCfg)
+        public override void Fetch(SiteConfig siteCfg, List<NewsCategory> newsCateList)
         {
             Logger.WriteInfo("开始同花顺新闻抓取");
-            base.Fetch(siteCfg);
+            base.Fetch(siteCfg, newsCateList);
 
             var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
             param.where.where.Add(SqlParamHelper.CreateWhere(
                     PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SiteId", site.SiteId.ToString()));
+            param.where.where.Add(SqlParamHelper.CreateWhere(
+                    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "ChannelVal", "headline"));
             var chlCfgList = chlCfgAccess.Load(param);
             foreach (var chlCfg in chlCfgList)
             {

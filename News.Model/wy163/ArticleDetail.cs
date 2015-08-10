@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace News.Model
+namespace News.Model.wy163
 {
-    public class Class1
+    public class ArticleDetail
     {
+        public string body { get; set; }
+        
     }
 }

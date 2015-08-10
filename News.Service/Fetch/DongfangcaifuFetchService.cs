@@ -23,6 +23,7 @@ namespace News.Service.Fetch
         public override void GetNewsDetail(ChannelConfig chlCfg)
         {
             var url = string.Format(site.IndexUrl + "&limit=500", chlCfg.ChannelVal);
+            var cate = cateList.Find(p => p.CategoryName == "财经");
             try
             {
                 HttpResponse<JSON> response = new CommonService.HttpResponse<JSON>();
@@ -50,6 +51,7 @@ namespace News.Service.Fetch
                     {
                         continue;
                     }
+                    newsItem.CategoryId = cate.CategoryId;
                     newsItem.Title = item.title;
                     newsItem.CreateTime = item.showtime;
                     newsItem.ImgUrl = item.image ?? "";
@@ -93,10 +95,10 @@ namespace News.Service.Fetch
                 Logger.WriteException(string.Format("分类下抓取新闻出现异常：{0}", chlCfg.ChannelName), ex);
             }
         }
-        public override void Fetch(SiteConfig siteCfg)
+        public override void Fetch(SiteConfig siteCfg, List<NewsCategory> newsCateList)
         {
             Logger.WriteInfo("开始东方财富网抓取");
-            base.Fetch(siteCfg);
+            base.Fetch(siteCfg, newsCateList);
 
             var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
             param.where.where.Add(SqlParamHelper.CreateWhere(

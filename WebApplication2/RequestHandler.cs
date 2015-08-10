@@ -91,6 +91,9 @@ namespace WebApplication2
                     return new GetNewsByIdService();
                 case "getchannelconfiglist":
                     return new GetChannelConfigListService();
+                case "getnewscategorylist":
+                    return new GetNewsCategoryService();
+
                 default:
                     return null;
 
