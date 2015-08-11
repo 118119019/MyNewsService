@@ -21,5 +21,17 @@ namespace News.DataAccess.Business
         public string NewsContent { get; set; }
         public string ChannelName { get; set; }
     }
+    public class WebNewsItem
+    {
+        public long NewsId { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int SourceSite { get; set; }
+        public int CategoryId { get; set; }
+        public DateTime CreateTime { get; set; }
+        public string FromSite { get; set; }
+        public string NewsContent { get; set; }
+
+    }
 }
 

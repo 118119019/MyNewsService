@@ -14,4 +14,14 @@ namespace News.DataAccess.Business
         {
         }
     }
+    /// <summary>
+    /// web详情页使用
+    /// </summary>
+    public class WebNewsItemAccess : BaseDataAccess<WebNewsItem>
+    {
+        public WebNewsItemAccess(string conn)
+            : base("NewsItem", "NewsId", conn, "", null, true)
+        {
+        }
+    }
 }
