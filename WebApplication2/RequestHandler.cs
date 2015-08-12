@@ -15,11 +15,11 @@ namespace WebApplication2
         public void ProcessRequest(HttpContext context)
         {
             string strDomain = context.Request["Action"] ?? "";
-            if (UrlAuthorize(context))
-            {
-                strDomain = strDomain.ToLower();
-                DealRequest(context, strDomain);
-            }
+            //if (UrlAuthorize(context))
+            //{
+            strDomain = strDomain.ToLower();
+            DealRequest(context, strDomain);
+            // }
         }
         /// <summary>
         /// 加密验证
