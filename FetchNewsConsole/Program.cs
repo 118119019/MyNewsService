@@ -24,10 +24,18 @@ namespace FetchNewsConsole
 
         static void Main(string[] args)
         {
+            string startDate = DateTime.Now.ToString("yyyy-MM-dd");
             while (true)
             {
                 try
                 {
+                    if (DateTime.Now.ToString("yyyy-MM-dd") != startDate)
+                    {
+                        var sql = " truncate table NewsItem;";
+                        net91com.Core.Data.SqlHelper.defaultConnectionString = Conn;
+                        net91com.Core.Data.SqlHelper.ExecuteNonQuery(sql);
+                        startDate = DateTime.Now.ToString("yyyy-MM-dd");
+                    }
 
                     Logger.WriteInfo("开始新闻抓取");
                     //分类整理
