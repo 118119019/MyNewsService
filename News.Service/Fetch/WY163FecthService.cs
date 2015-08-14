@@ -100,7 +100,18 @@ namespace News.Service.Fetch
                             var sourceUrl = string.Format(site.DetailUrl, item.docid);
                             str = HttpUtility.Get(sourceUrl);
                             str = str.Replace("{\"" + item.docid + "\":{", "{").Replace("}}", "}");
+
                             var article = SerilizeService<ArticleDetail>.CreateSerilizer(Serilize_Type.Json).Deserilize(str);
+                            if (article.img != null)
+                            {
+                                foreach (var img in article.img)
+                                {
+                                    article.body =
+                                       string.Format("<p><img src=\"{0}\" itemprop=\"image\" alt=\"\" >{1}</ p >", img.src, img.alt)
+                                        + article.body;
+                                }
+                            }
+
                             doc.LoadHtml(article.body);
                             break;
                         }

@@ -74,16 +74,16 @@ namespace FetchNewsConsole
             var cateList = new NewsCategoryAccess(Conn).GetAllCate();
             foreach (var site in siteList)
             {
-                //if (site.SiteName == "同花顺")
-                //{
-                //    TongHuaSunFetchService fetchService = new TongHuaSunFetchService();
-                //    fetchService.Fetch(site, cateList);
-                //}
-                //if (site.SiteName == "东方财富网")
-                //{
-                //    DongfangcaifuFetchService fetchSercie = new DongfangcaifuFetchService();
-                //    fetchSercie.Fetch(site, cateList);
-                //}
+                if (site.SiteName == "同花顺")
+                {
+                    TongHuaSunFetchService fetchService = new TongHuaSunFetchService();
+                    fetchService.Fetch(site, cateList);
+                }
+                if (site.SiteName == "东方财富网")
+                {
+                    DongfangcaifuFetchService fetchSercie = new DongfangcaifuFetchService();
+                    fetchSercie.Fetch(site, cateList);
+                }
                 if (site.SiteName == "网易新闻")
                 {
                     WY163FecthService fetchServcie = new WY163FecthService();
