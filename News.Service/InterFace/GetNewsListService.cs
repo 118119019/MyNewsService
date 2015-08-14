@@ -72,6 +72,11 @@ namespace News.Service.InterFace
                 param.where.where.Add(SqlParamHelper.CreateWhere(
                    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SourceSite", request["SourceSite"]));
             }
+            if (request["CategoryId"] != null)
+            {
+                param.where.where.Add(SqlParamHelper.CreateWhere(
+                   PARAM_TYPE.EQUATE, LINK_TYPE.AND, "CategoryId", request["CategoryId"]));
+            }
             base.InitContent(request);
         }
     }

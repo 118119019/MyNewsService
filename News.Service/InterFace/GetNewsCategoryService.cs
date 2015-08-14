@@ -38,6 +38,12 @@ namespace News.Service.InterFace
                 param.where.where.Add(SqlParamHelper.CreateWhere(
                    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "CategoryName", request["CategoryName"]));
             }
+            if (request["CategoryId"] != null)
+            {
+                param.where.where.Add(SqlParamHelper.CreateWhere(
+                   PARAM_TYPE.EQUATE, LINK_TYPE.AND, "CategoryId", request["CategoryId"]));
+            }
+            //CategoryId
             base.InitContent(request);
         }
         public override string GetList()
