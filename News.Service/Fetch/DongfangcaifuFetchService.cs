@@ -59,7 +59,6 @@ namespace News.Service.Fetch
                     //采集内容                        
                     HtmlDocument doc = new HtmlDocument();
                     HtmlNode.ElementsFlags.Remove("option");
-
                     url = uri.Replace("yw", "content?newsid=" + item.newsid.ToString());
                     for (int i = 0; i < 5; i++)
                     {
@@ -78,11 +77,16 @@ namespace News.Service.Fetch
                     try
                     {
                         var div = doc.DocumentNode;
+                        if (string.IsNullOrEmpty(div.InnerText))
+                        {
+                            continue;
+                        }
                         newsItem.NewsText = div.InnerText.Replace("<!-- EM_StockImg_Start --><!--IMG#0--><!-- EM_StockImg_End -->", "");
                         RemoveUnsafe(div);
                         newsItem.NewsContent = div.InnerHtml;
                         //保存新闻列表
                         newsItemAccess.Save(newsItem, newsItem.NewsId.ToString());
+                        SaveSegMents(newsItem);
                     }
                     catch (Exception ex)
                     {
@@ -110,6 +114,7 @@ namespace News.Service.Fetch
                 GetNewsDetail(chlCfg);
                 Logger.WriteInfo(string.Format("结束{0}分类抓取", chlCfg.ChannelName));
             }
+            CloseIndex();
             Logger.WriteInfo("结束东方财富网抓取");
         }
     }

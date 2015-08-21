@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using News.Service.PanGuTool;
 
 namespace News.Service.Fetch
 {
@@ -20,6 +21,9 @@ namespace News.Service.Fetch
         protected NewsItemAccess newsItemAccess = new NewsItemAccess(dataConn);
 
         protected List<NewsCategory> cateList;
+
+
+
         public virtual void UpdateSiteChl()
         {
 
@@ -35,6 +39,11 @@ namespace News.Service.Fetch
             site = siteCfg;
             cateList = newsCateList;
             UpdateSiteChl();
+            Index.CreateIndex(Index.INDEX_DIR);
+        }
+        protected void CloseIndex()
+        {
+            Index.Close();
         }
 
         protected void RemoveUnsafe(HtmlNode div)
@@ -59,6 +68,12 @@ namespace News.Service.Fetch
                     });
                 });
             }
+        }
+
+
+        protected void SaveSegMents(NewsItem newsItem)
+        {
+            Index.IndexString(Index.INDEX_DIR, newsItem.SourceUrl, newsItem.Title, newsItem.CreateTime, newsItem.NewsText, newsItem.NewsId.ToString());
         }
     }
 }

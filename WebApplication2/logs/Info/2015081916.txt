@@ -1,0 +1,27 @@
+------- Initialization Complete -----------
+------- Not Scheduling any Jobs - relying on XML definitions --
+------- Starting Scheduler ----------------
+------- Started Scheduler -----------------
+------- Initialization Complete -----------
+------- Not Scheduling any Jobs - relying on XML definitions --
+------- Starting Scheduler ----------------
+------- Started Scheduler -----------------
+------- Initialization Complete -----------
+------- Not Scheduling any Jobs - relying on XML definitions --
+------- Starting Scheduler ----------------
+------- Started Scheduler -----------------
+------- Shutting Down ---------------------
+------- Shutdown Complete -----------------
+Executed 0 jobs.
+------- Initialization Complete -----------
+------- Not Scheduling any Jobs - relying on XML definitions --
+------- Starting Scheduler ----------------
+------- Started Scheduler -----------------
+------- Initialization Complete -----------
+------- Not Scheduling any Jobs - relying on XML definitions --
+------- Starting Scheduler ----------------
+------- Started Scheduler -----------------
+------- Initialization Complete -----------
+------- Not Scheduling any Jobs - relying on XML definitions --
+------- Starting Scheduler ----------------
+------- Started Scheduler -----------------

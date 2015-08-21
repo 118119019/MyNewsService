@@ -6,62 +6,107 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\work</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\mytest</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="Api.ashx">
+      <publishTime>08/04/2015 18:11:49</publishTime>
+    </File>
     <File Include="bin/Common.Logging.Core.dll">
-      <publishTime>07/12/2015 15:33:49</publishTime>
+      <publishTime>07/29/2015 09:50:29</publishTime>
     </File>
     <File Include="bin/Common.Logging.dll">
-      <publishTime>07/12/2015 15:33:49</publishTime>
+      <publishTime>07/29/2015 09:50:29</publishTime>
     </File>
     <File Include="bin/CommonService.dll">
-      <publishTime>07/11/2015 22:26:14</publishTime>
+      <publishTime>07/09/2015 14:20:04</publishTime>
     </File>
     <File Include="bin/CommonUtility.dll">
-      <publishTime>07/11/2015 22:26:15</publishTime>
+      <publishTime>06/25/2015 18:33:32</publishTime>
+    </File>
+    <File Include="bin/DataAccess.dll">
+      <publishTime>07/09/2015 14:20:04</publishTime>
     </File>
     <File Include="bin/HtmlAgilityPack.dll">
-      <publishTime>07/12/2015 14:00:26</publishTime>
+      <publishTime>07/29/2015 09:50:29</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.dll">
+      <publishTime>08/21/2014 18:20:33</publishTime>
+    </File>
+    <File Include="bin/Model.dll">
+      <publishTime>07/09/2015 14:20:04</publishTime>
     </File>
     <File Include="bin/net91com.Core.dll">
-      <publishTime>07/11/2015 23:36:02</publishTime>
+      <publishTime>06/11/2014 15:16:21</publishTime>
+    </File>
+    <File Include="bin/News.DataAccess.dll">
+      <publishTime>08/11/2015 16:51:12</publishTime>
+    </File>
+    <File Include="bin/News.Model.dll">
+      <publishTime>08/11/2015 16:51:12</publishTime>
+    </File>
+    <File Include="bin/News.Service.dll">
+      <publishTime>08/11/2015 16:51:12</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>07/11/2015 22:26:31</publishTime>
+      <publishTime>07/09/2015 14:20:04</publishTime>
     </File>
     <File Include="bin/NLog.config">
-      <publishTime>07/12/2015 16:57:44</publishTime>
+      <publishTime>07/29/2015 09:50:29</publishTime>
     </File>
     <File Include="bin/NLog.dll">
-      <publishTime>07/11/2015 22:27:46</publishTime>
+      <publishTime>06/11/2014 15:16:21</publishTime>
     </File>
     <File Include="bin/Quartz.dll">
-      <publishTime>07/12/2015 15:33:49</publishTime>
+      <publishTime>07/29/2015 09:50:30</publishTime>
     </File>
     <File Include="bin/quartz_jobs.xml">
-      <publishTime>07/12/2015 17:06:14</publishTime>
+      <publishTime>07/29/2015 09:50:29</publishTime>
+    </File>
+    <File Include="bin/Service.dll">
+      <publishTime>07/09/2015 14:20:04</publishTime>
     </File>
     <File Include="bin/ServiceHelp.dll">
-      <publishTime>07/27/2015 22:49:22</publishTime>
+      <publishTime>08/11/2015 16:51:12</publishTime>
     </File>
     <File Include="bin/WebApplication2.dll">
-      <publishTime>07/27/2015 22:49:22</publishTime>
+      <publishTime>08/11/2015 16:51:12</publishTime>
+    </File>
+    <File Include="Content/main.css">
+      <publishTime>08/11/2015 15:38:04</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>07/12/2015 16:55:39</publishTime>
+      <publishTime>07/29/2015 09:50:29</publishTime>
     </File>
     <File Include="Handler1.ashx">
-      <publishTime>07/12/2015 16:56:44</publishTime>
+      <publishTime>07/29/2015 09:50:29</publishTime>
+    </File>
+    <File Include="img/icons.png">
+      <publishTime>08/11/2015 15:37:44</publishTime>
+    </File>
+    <File Include="InterFaceTest.aspx">
+      <publishTime>08/07/2015 11:36:16</publishTime>
+    </File>
+    <File Include="News/ArticleDetail.aspx">
+      <publishTime>08/11/2015 17:08:24</publishTime>
     </File>
     <File Include="NLog.config">
-      <publishTime>07/12/2015 16:57:44</publishTime>
+      <publishTime>07/29/2015 09:50:29</publishTime>
     </File>
     <File Include="quartz_jobs.xml">
-      <publishTime>07/12/2015 17:06:14</publishTime>
+      <publishTime>07/29/2015 09:50:29</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.11.0.min.js">
+      <publishTime>08/11/2015 15:42:29</publishTime>
+    </File>
+    <File Include="Scripts/jquery.cookie.js">
+      <publishTime>08/11/2015 15:45:40</publishTime>
+    </File>
+    <File Include="Scripts/site.js">
+      <publishTime>08/11/2015 17:07:45</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/12/2015 17:02:55</publishTime>
+      <publishTime>08/11/2015 17:08:30</publishTime>
     </File>
   </ItemGroup>
 </Project>

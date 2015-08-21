@@ -65,7 +65,6 @@ namespace News.Service.Fetch
                         newsItem.CreateTime = dt;
                         newsItem.FromSite = item.source;
                         newsItem.ImgUrl = item.imgurl ?? "";
-
                         newsItem.ChannelName = tonghuaSunXmlColumn.columnName;
                         //采集内容                        
                         HtmlDocument doc = new HtmlDocument();
@@ -84,12 +83,18 @@ namespace News.Service.Fetch
                         }
                         try
                         {
+                            
                             var div = doc.DocumentNode.SelectSingleNode("//div[@id='content']");
+                            if (string.IsNullOrEmpty(div.InnerText))
+                            {
+                                continue;
+                            }
                             newsItem.NewsText = div.InnerText;
                             RemoveUnsafe(div);
                             newsItem.NewsContent = div.InnerHtml;
                             //保存新闻列表
                             newsItemAccess.Save(newsItem, newsItem.NewsId.ToString());
+                            SaveSegMents(newsItem);
                         }
                         catch (Exception ex)
                         {
@@ -120,6 +125,7 @@ namespace News.Service.Fetch
                 GetNewsDetail(chlCfg);
                 Logger.WriteInfo(string.Format("结束{0}分类抓取", chlCfg.ChannelName));
             }
+            CloseIndex();
             Logger.WriteInfo("结束同花顺新闻抓取");
         }
     }

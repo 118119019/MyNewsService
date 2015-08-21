@@ -8,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using News.Service.PanGuTool;
+using News.DataAccess.Business;
 
 namespace WebApplication2
 {
@@ -31,6 +33,18 @@ namespace WebApplication2
             HttpResponse<result> response = new HttpResponse<result>();
             var res = response.GetFuncGetResponse(url, Serilize_Type.Json);
 
+        }
+
+        protected void btnQuery_Click(object sender, EventArgs e)
+        {
+            string indexDir = Index.INDEX_DIR;
+            if (txtName.Text.Trim() != "")
+            {
+                int recCount = 0;
+                List<NewsItem> list = Index.Search(indexDir, txtName.Text, 1000, 1, out recCount);
+                rptList1.DataSource = list;
+                rptList1.DataBind();
+            }
         }
     }
 }

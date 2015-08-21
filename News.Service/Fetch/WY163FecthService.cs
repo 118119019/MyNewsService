@@ -123,6 +123,10 @@ namespace News.Service.Fetch
                     try
                     {
                         var div = doc.DocumentNode;
+                        if (string.IsNullOrEmpty(div.InnerText))
+                        {
+                            continue;
+                        }
                         var matchstr = (string)div.InnerText.ToString().Clone();
                         MatchCollection matchList = Regex.Matches(matchstr, @"<!--\S*-->");
                         foreach (Match match in matchList)
@@ -134,6 +138,7 @@ namespace News.Service.Fetch
                         newsItem.NewsContent = div.InnerHtml;
                         //保存新闻列表
                         newsItemAccess.Save(newsItem, newsItem.NewsId.ToString());
+                        SaveSegMents(newsItem);
                     }
                     catch (Exception ex)
                     {
@@ -162,6 +167,7 @@ namespace News.Service.Fetch
                 GetNewsDetail(chlCfg);
                 Logger.WriteInfo(string.Format("结束{0}分类抓取", chlCfg.ChannelName));
             }
+            CloseIndex();
             Logger.WriteInfo("结束网易新闻抓取");
         }
     }

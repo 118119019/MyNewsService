@@ -42,6 +42,9 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\lib\Lucene.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Model.dll</HintPath>
@@ -49,6 +52,15 @@
     <Reference Include="net91com.Core, Version=1.0.4596.17381, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\net91com.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PandaPublisher">
+      <HintPath>..\lib\PandaPublisher.dll</HintPath>
+    </Reference>
+    <Reference Include="PanGu">
+      <HintPath>..\lib\PanGu.dll</HintPath>
+    </Reference>
+    <Reference Include="PanGu.HighLight">
+      <HintPath>..\lib\PanGu.HighLight.dll</HintPath>
     </Reference>
     <Reference Include="Service">
       <HintPath>..\lib\Service.dll</HintPath>
@@ -76,6 +88,9 @@
     <Compile Include="InterFace\GetNewsListService.cs" />
     <Compile Include="InterFace\NewsInterfaceServcie.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="PanGuTool\Index.cs" />
+    <Compile Include="PanGuTool\PanGuAnalyzer.cs" />
+    <Compile Include="PanGuTool\PanGuTokenizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
