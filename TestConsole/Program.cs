@@ -16,57 +16,7 @@ namespace TestConsole
         {
 
 
-            xmlColumn xml = new xmlColumn()
-            {
-                columnName = "11",
-                currentPage = 2,
-                nextPage = "3",
-                total = 1,
-                pages = 4,
-                pageItems = new pageItems()
-                {
-                    item = new List<item>() { 
-                     new item (){
-                      seq=1
-                     }
-                    }
-                }
-            };
-            //     string str = CommonService.Serilizer.SerilizeService<xmlColumn>.CreateSerilizer(Serilize_Type.Xml).Serilize(xml);
-            string url = "http://news.10jqka.com.cn/headline_mlist/1_0_0_1/";
-            CommonService.HttpResponse<xmlColumn> httpResponse = new CommonService.HttpResponse<xmlColumn>();
-            xml = httpResponse.PostFuncGetResponse(url, "", Serilize_Type.Xml);
-
-            url = "http://news.10jqka.com.cn/m574677893_headline/";
-            string content = CommonUtility.HttpUtility.Get(url, Encoding.UTF8);
-
-            HtmlDocument doc = new HtmlDocument();
-            doc.LoadHtml(content);
-            var div = doc.DocumentNode.SelectSingleNode("//div[@id='content']");
-            string str = div.InnerText;
-
-
-
-            Console.WriteLine(str);
-
-            div = doc.DocumentNode.SelectSingleNode("//div[@class='title article_info']");
-
-
-            var title = div.SelectSingleNode("h1");
-            Console.WriteLine(title.InnerText);
-
-            div = doc.DocumentNode.SelectSingleNode("//div[@id='extra']");
            
-          //  var from = div.SelectSingleNode("span[@class='from']");
-
-          //  Console.WriteLine(from.InnerText);
-
-
-            var date = div.SelectSingleNode("span[@class='date']");
-
-            Console.WriteLine(date.InnerText.Replace("阅读全文", ""));
-
-
             Console.ReadKey();
         }
 

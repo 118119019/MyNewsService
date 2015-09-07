@@ -16,6 +16,8 @@ using System.Threading;
 
 using News.Model.wy163;
 using System.Collections.Generic;
+using System.IO;
+using News.Service;
 
 namespace FetchNewsConsole
 {
@@ -29,12 +31,19 @@ namespace FetchNewsConsole
             {
                 try
                 {
+                    //FtpHelp ftpHelp = new FtpHelp();
+                    //ftpHelp.ClearFiles();
+                    var path = PanGu.Framework.Path.GetAssemblyPath() + @"NewsIndex";
                     if (DateTime.Now.ToString("yyyy-MM-dd") != startDate)
                     {
                         var sql = " truncate table NewsItem;";
                         net91com.Core.Data.SqlHelper.defaultConnectionString = Conn;
                         net91com.Core.Data.SqlHelper.ExecuteNonQuery(sql);
                         startDate = DateTime.Now.ToString("yyyy-MM-dd");
+
+                        Directory.Delete(path, true);
+                        // 然后再新建一个空的文件夹
+                        Directory.CreateDirectory(path);
                     }
 
                     Logger.WriteInfo("开始新闻抓取");
@@ -57,8 +66,20 @@ namespace FetchNewsConsole
                     //}
 
 
-                    Fetch();
+                     Fetch();
                     Logger.WriteInfo("结束新闻抓取");
+
+                    Logger.WriteInfo("开始 分词文件上传");
+                    var fileList = Directory.GetFiles(path);
+
+
+                    //foreach (var file in fileList)
+                    //{
+                    //    ftpHelp.Upload(file);
+                    //}
+
+                    Logger.WriteInfo("结束 分词文件上传");
+
                 }
                 catch (Exception ex)
                 {
@@ -98,6 +119,8 @@ namespace FetchNewsConsole
                     fetchServcie.Fetch(site, cateList);
                 }
             }
+
+            //ftp 上传 分词后文件夹
         }
 
     }

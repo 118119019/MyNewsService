@@ -65,6 +65,10 @@
     <Reference Include="net91com.Core">
       <HintPath>..\lib\net91com.Core.dll</HintPath>
     </Reference>
+    <Reference Include="PanGu, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\PanGu.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
