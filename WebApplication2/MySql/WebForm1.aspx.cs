@@ -12,18 +12,26 @@ namespace WebApplication2.MySql
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<BloggingContext>());
-            using (BloggingContext db = new BloggingContext())
+            try
             {
-                db.Blogs.Add(new Blog { Name = "Another Blog" });
-                db.SaveChanges();
-
-                foreach (var blog in db.Blogs)
+                using (BloggingContext db = new BloggingContext())
                 {
-                    Response.Write(blog.BlogId + " "
-                        + blog.Name + " ");
+                    db.Blog.Add(new Blog { Name = "Another Blog" });
+                    db.SaveChanges();
+
+                    foreach (var blog in db.Blog)
+                    {
+                        Response.Write(blog.BlogId + " "
+                            + blog.Name + " ");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
         }
     }
 
@@ -34,7 +42,7 @@ namespace WebApplication2.MySql
             : base("DbConMySql")
         { }
 
-        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Blog> Blog { get; set; }
 
 
     }

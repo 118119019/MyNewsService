@@ -18,6 +18,7 @@ using News.Model.wy163;
 using System.Collections.Generic;
 using System.IO;
 using News.Service;
+using News.Service.MySql;
 
 namespace FetchNewsConsole
 {
@@ -31,46 +32,62 @@ namespace FetchNewsConsole
             {
                 try
                 {
-                    //FtpHelp ftpHelp = new FtpHelp();
-                    //ftpHelp.ClearFiles();
-                    var path = PanGu.Framework.Path.GetAssemblyPath() + @"NewsIndex";
-                    if (DateTime.Now.ToString("yyyy-MM-dd") != startDate)
-                    {
-                        var sql = " truncate table NewsItem;";
-                        net91com.Core.Data.SqlHelper.defaultConnectionString = Conn;
-                        net91com.Core.Data.SqlHelper.ExecuteNonQuery(sql);
-                        startDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-                        Directory.Delete(path, true);
-                        // 然后再新建一个空的文件夹
-                        Directory.CreateDirectory(path);
-                    }
+                    //var path = PanGu.Framework.Path.GetAssemblyPath() + @"NewsIndex";
+                    //if (DateTime.Now.ToString("yyyy-MM-dd") != startDate)
+                    //{
+                    //    var sql = " truncate table NewsItem;";
+                    //    net91com.Core.Data.SqlHelper.defaultConnectionString = Conn;
+                    //    net91com.Core.Data.SqlHelper.ExecuteNonQuery(sql);
+                    //    startDate = DateTime.Now.ToString("yyyy-MM-dd");
+
+                    //    Directory.Delete(path, true);
+                    //    // 然后再新建一个空的文件夹
+                    //    Directory.CreateDirectory(path);
+                    //}
 
                     Logger.WriteInfo("开始新闻抓取");
                     //分类整理
-                    //var url = "http://c.3g.163.com/nc/topicset/ios/subscribe/manage/listspecial.html";
-                    //var str = HttpUtility.Get(url);
-                    //str = str.Replace("{\"tList\":[", "[").Replace("]}", "]");
-                    //var topicList = SerilizeService<List<Topic>>.CreateSerilizer(Serilize_Type.Json).Deserilize(str);
-                    //var access = new NewsCategoryAccess(Conn);
-                    //var id = 1;
-                    //foreach (var item in topicList)
-                    //{
-                    //    if (item.tname == "原创")
-                    //    {
-                    //        item.tname = "网易原创";
-                    //    }
-                    //    var cate = new NewsCategory() { CategoryId = id, CategoryName = item.tname,  };
-                    //    access.Insert(cate, cate.CategoryId.ToString());
-                    //    id++;
-                    //}
+                    var url = "http://c.3g.163.com/nc/topicset/ios/subscribe/manage/listspecial.html";
+                    var str = HttpUtility.Get(url);
+                    str = str.Replace("{\"tList\":[", "[").Replace("]}", "]");
+                    var topicList = SerilizeService<List<Topic>>.CreateSerilizer(Serilize_Type.Json).Deserilize(str);
+                    var access = new NewsCategoryMySqlServcie();
+                    var id = 1;
+                    var list = access.NewsCategory;
+                    foreach (var item in list)
+                    {
+                        Console.WriteLine(item.CategoryId + " " + item.CategoryName);
+                    }
+                    foreach (var item in topicList)
+                    {
+                        if (item.tname == "原创")
+                        {
+                            item.tname = "网易原创";
+                        }
+                        var cate = new NewsCategory() {  CategoryName = item.tname, };
+                        try
+                        {
+                            access.NewsCategory.Add(cate);
+                            access.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+
+                            Console.WriteLine(ex.Message);
+                            throw;
+                        }
 
 
-                     Fetch();
+                        id++;
+                    }
+
+
+                    Fetch();
                     Logger.WriteInfo("结束新闻抓取");
 
                     Logger.WriteInfo("开始 分词文件上传");
-                    var fileList = Directory.GetFiles(path);
+                    //   var fileList = Directory.GetFiles(path);
 
 
                     //foreach (var file in fileList)
