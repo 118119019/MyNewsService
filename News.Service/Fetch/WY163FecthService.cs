@@ -11,6 +11,7 @@ using DataAccess.SqlParam;
 using HtmlAgilityPack;
 using News.DataAccess.Business;
 using News.Model.wy163;
+using News.Service.MySql;
 
 namespace News.Service.Fetch
 {
@@ -23,7 +24,7 @@ namespace News.Service.Fetch
             var str = HttpUtility.Get(url);
             str = str.Replace("{\"tList\":[", "[").Replace("]}", "]");
             var topicList = SerilizeService<List<Topic>>.CreateSerilizer(Serilize_Type.Json).Deserilize(str);
-            var access = new NewsCategoryAccess(dataConn);
+
             foreach (var item in topicList)
             {
                 item.tname = "网易" + item.tname;
@@ -32,7 +33,21 @@ namespace News.Service.Fetch
                 chlCfg.ChannelName = item.tname;
                 chlCfg.ChannelVal = item.tid;
                 chlCfg.SiteId = site.SiteId;
-                chlCfgAccess.SaveChlCfg(chlCfg);
+                var _chl = chlCfgAccess.Find(
+                    p => p.ChannelVal == item.tid
+                    && p.ChannelName == item.tname
+                    && p.SiteId == 3
+                    );
+                if (_chl == null)
+                {
+                    chlCfgAccess.Add(chlCfg);
+                    chlCfgAccess.Save();
+                }
+                else
+                {
+                    continue;
+                }
+
             }
         }
 
@@ -66,10 +81,10 @@ namespace News.Service.Fetch
                     {
                         continue;
                     }
-                    var newsParam = SqlParamHelper.GetDefaultParam(1, 10, "NewsId", true);
-                    newsParam.where.where.Add(SqlParamHelper.CreateWhere(
-                    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SourceUrl", item.url));
-                    var newsItem = newsItemAccess.Load(newsParam).FirstOrDefault();
+                    //var newsParam = SqlParamHelper.GetDefaultParam(1, 10, "NewsId", true);
+                    //newsParam.where.where.Add(SqlParamHelper.CreateWhere(
+                    //PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SourceUrl", item.url));
+                    var newsItem = newsItemAccess.Find(p => p.SourceUrl == item.url);
                     if (newsItem == null)
                     {
                         newsItem = new NewsItem()
@@ -137,7 +152,8 @@ namespace News.Service.Fetch
                         RemoveUnsafe(div);
                         newsItem.NewsContent = div.InnerHtml;
                         //保存新闻列表
-                        newsItemAccess.Save(newsItem, newsItem.NewsId.ToString());
+                        newsItemAccess.Add(newsItem);
+                        newsItemAccess.Save();
                         SaveSegMents(newsItem);
                     }
                     catch (Exception ex)
@@ -156,11 +172,11 @@ namespace News.Service.Fetch
             Logger.WriteInfo("开始网易新闻抓取");
             base.Fetch(siteCfg, newsCateList);
 
-            var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
-            param.where.where.Add(SqlParamHelper.CreateWhere(
-                    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SiteId", site.SiteId.ToString()));
+            //var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
+            //param.where.where.Add(SqlParamHelper.CreateWhere(
+            //        PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SiteId", site.SiteId.ToString()));
 
-            var chlCfgList = chlCfgAccess.Load(param);
+            var chlCfgList = chlCfgAccess.FindAll(p => p.SiteId == site.SiteId);
             foreach (var chlCfg in chlCfgList)
             {
                 Logger.WriteInfo(string.Format("开始{0}分类抓取", chlCfg.ChannelName));

@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using News.Service.PanGuTool;
+using News.Service.MySql;
 
 namespace News.Service.Fetch
 {
@@ -15,10 +16,9 @@ namespace News.Service.Fetch
     {
         public int siteid;
         public SiteConfig site;
-        protected static string UnsafeTags = "head|iframe|style|script|object|embed|applet|noframes|noscript|noembed";
-        protected static string dataConn = ConfigurationManager.ConnectionStrings["LinstenNews"].ConnectionString;
-        protected ChannelConfigAccess chlCfgAccess = new ChannelConfigAccess(dataConn);
-        protected NewsItemAccess newsItemAccess = new NewsItemAccess(dataConn);
+        protected static string UnsafeTags = "head|iframe|style|script|object|embed|applet|noframes|noscript|noembed";     
+        protected ChannelConfigMySqlService chlCfgAccess = new ChannelConfigMySqlService();
+        protected NewsItemMySqlServcie newsItemAccess = new NewsItemMySqlServcie();
 
         protected List<NewsCategory> cateList;
 
@@ -73,7 +73,7 @@ namespace News.Service.Fetch
 
         protected void SaveSegMents(NewsItem newsItem)
         {
-            Index.IndexString(Index.INDEX_DIR, newsItem.SourceUrl, newsItem.Title, newsItem.CreateTime, newsItem.NewsText, newsItem.NewsId.ToString());
+     //Index.IndexString(Index.INDEX_DIR, newsItem.SourceUrl, newsItem.Title, newsItem.CreateTime, newsItem.NewsText, newsItem.NewsId.ToString());
         }
     }
 }

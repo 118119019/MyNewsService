@@ -54,33 +54,36 @@ namespace FetchNewsConsole
                     var topicList = SerilizeService<List<Topic>>.CreateSerilizer(Serilize_Type.Json).Deserilize(str);
                     var access = new NewsCategoryMySqlServcie();
                     var id = 1;
-                    var list = access.NewsCategory;
-                    foreach (var item in list)
-                    {
-                        Console.WriteLine(item.CategoryId + " " + item.CategoryName);
-                    }
-                    foreach (var item in topicList)
-                    {
-                        if (item.tname == "原创")
-                        {
-                            item.tname = "网易原创";
-                        }
-                        var cate = new NewsCategory() {  CategoryName = item.tname, };
-                        try
-                        {
-                            access.NewsCategory.Add(cate);
-                            access.SaveChanges();
-                        }
-                        catch (Exception ex)
-                        {
+                    //var item = access.Find(p => p.CategoryId > 0);
+                    //item.CategoryName = item.CategoryName + "test";
+                    //access.Save();
 
-                            Console.WriteLine(ex.Message);
-                            throw;
-                        }
+                    //foreach (var item in list)
+                    //{
+                    //    Console.WriteLine(item.CategoryId + " " + item.CategoryName);
+                    //}
+                    //foreach (var item in topicList)
+                    //{
+                    //    if (item.tname == "原创")
+                    //    {
+                    //        item.tname = "网易原创";
+                    //    }
+                    //    var cate = new NewsCategory() {   CategoryName = item.tname, };
+                    //    try
+                    //    {
+                    //        access.NewsCategory.Add(cate);
+                    //        access.SaveChanges();
+                    //    }
+                    //    catch (Exception ex)
+                    //    {
+
+                    //        Console.WriteLine(ex.Message);
+                    //        throw;
+                    //    }
 
 
-                        id++;
-                    }
+                    //    id++;
+                    //}
 
 
                     Fetch();
@@ -112,12 +115,16 @@ namespace FetchNewsConsole
         protected static ChannelConfigAccess chlCfgAccess = new ChannelConfigAccess(Conn);
         private static void Fetch()
         {
-            var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
-            param.where.where.Add(SqlParamHelper.CreateWhere(
-                PARAM_TYPE.EQUATE, LINK_TYPE.AND, "Status", "1"));
-            var siteCfgAccess = new SiteConfigAccess(Conn);
-            var siteList = siteCfgAccess.Load(param);
-            var cateList = new NewsCategoryAccess(Conn).GetAllCate();
+            //var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
+            //param.where.where.Add(SqlParamHelper.CreateWhere(
+            //    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "Status", "1"));
+            //var siteCfgAccess = new SiteConfigAccess(Conn);
+            //var siteList = siteCfgAccess.Load(param); 
+            var siteList = new SiteConfigMySqlService().FindAll(p => p.SiteId > 0);
+            //var cateList = new NewsCategoryAccess(Conn).GetAllCate();
+            var cateList = new NewsCategoryMySqlServcie().FindAll(p => p.CategoryId > 0);
+
+
             foreach (var site in siteList)
             {
                 if (site.SiteName == "同花顺")

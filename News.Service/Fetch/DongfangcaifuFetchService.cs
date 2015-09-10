@@ -32,10 +32,12 @@ namespace News.Service.Fetch
                 var uri = url.Split('?')[0];
                 foreach (var item in json.news)
                 {
-                    var newsParam = SqlParamHelper.GetDefaultParam(1, 10, "NewsId", true);
-                    newsParam.where.where.Add(SqlParamHelper.CreateWhere(
-                    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SourceUrl", item.url_m));
-                    var newsItem = newsItemAccess.Load(newsParam).FirstOrDefault();
+                    //var newsParam = SqlParamHelper.GetDefaultParam(1, 10, "NewsId", true);
+                    //newsParam.where.where.Add(SqlParamHelper.CreateWhere(
+                    //PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SourceUrl", item.url_m));
+                    var newsItem = newsItemAccess.Find(
+                        p => p.SourceUrl == item.url_m
+                        );
                     if (newsItem == null)
                     {
                         newsItem = new NewsItem()
@@ -85,7 +87,8 @@ namespace News.Service.Fetch
                         RemoveUnsafe(div);
                         newsItem.NewsContent = div.InnerHtml;
                         //保存新闻列表
-                        newsItemAccess.Save(newsItem, newsItem.NewsId.ToString());
+                        newsItemAccess.Add(newsItem);
+                        newsItemAccess.Save();
                         SaveSegMents(newsItem);
                     }
                     catch (Exception ex)
@@ -104,10 +107,10 @@ namespace News.Service.Fetch
             Logger.WriteInfo("开始东方财富网抓取");
             base.Fetch(siteCfg, newsCateList);
 
-            var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
-            param.where.where.Add(SqlParamHelper.CreateWhere(
-                    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SiteId", site.SiteId.ToString()));
-            var chlCfgList = chlCfgAccess.Load(param);
+            //var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
+            //param.where.where.Add(SqlParamHelper.CreateWhere(
+            //        PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SiteId", site.SiteId.ToString()));
+            var chlCfgList = chlCfgAccess.FindAll(p => p.SiteId == site.SiteId);
             foreach (var chlCfg in chlCfgList)
             {
                 Logger.WriteInfo(string.Format("开始{0}分类抓取", chlCfg.ChannelName));

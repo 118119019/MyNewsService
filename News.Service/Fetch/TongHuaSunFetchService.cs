@@ -30,7 +30,22 @@ namespace News.Service.Fetch
                 chlCfg.ChannelName = item.name;
                 chlCfg.ChannelVal = item.columnId;
                 chlCfg.SiteId = site.SiteId;
-                chlCfgAccess.SaveChlCfg(chlCfg);
+                var _chl = chlCfgAccess.Find(p => p.SiteId == chlCfg.SiteId
+                  && p.ChannelVal == chlCfg.ChannelVal
+                  && p.ChannelName == chlCfg.ChannelName
+                  );
+                if (_chl != null)
+                {
+                    chlCfg.ChannelId = _chl.ChannelId;
+                    chlCfg.ChannelName = item.name;
+                    chlCfg.ChannelVal = item.columnId;
+                    chlCfg.SiteId = site.SiteId;
+                }
+                else
+                {
+                    chlCfgAccess.Add(chlCfg);
+                }
+                chlCfgAccess.Save();
             }
         }
         public override void GetNewsDetail(ChannelConfig chlCfg)
@@ -47,10 +62,10 @@ namespace News.Service.Fetch
                     url = tonghuaSunXmlColumn.nextPage ?? "";
                     foreach (var item in tonghuaSunXmlColumn.pageItems.item)
                     {
-                        var newsParam = SqlParamHelper.GetDefaultParam(1, 10, "NewsId", true);
-                        newsParam.where.where.Add(SqlParamHelper.CreateWhere(
-                        PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SourceUrl", item.url));
-                        var newsItem = newsItemAccess.Load(newsParam).FirstOrDefault();
+                        //var newsParam = SqlParamHelper.GetDefaultParam(1, 10, "NewsId", true);
+                        //newsParam.where.where.Add(SqlParamHelper.CreateWhere(
+                        //PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SourceUrl", item.url));
+                        var newsItem = newsItemAccess.Find(p => p.SourceUrl == item.url);
                         if (newsItem == null)
                         {
                             newsItem = new NewsItem() { NewsId = -1, SourceUrl = item.url, SourceSite = site.SiteId, Author = "" };
@@ -83,7 +98,7 @@ namespace News.Service.Fetch
                         }
                         try
                         {
-                            
+
                             var div = doc.DocumentNode.SelectSingleNode("//div[@id='content']");
                             if (string.IsNullOrEmpty(div.InnerText))
                             {
@@ -93,7 +108,8 @@ namespace News.Service.Fetch
                             RemoveUnsafe(div);
                             newsItem.NewsContent = div.InnerHtml;
                             //保存新闻列表
-                            newsItemAccess.Save(newsItem, newsItem.NewsId.ToString());
+                            newsItemAccess.Add(newsItem);
+                            newsItemAccess.Save();
                             SaveSegMents(newsItem);
                         }
                         catch (Exception ex)
@@ -112,13 +128,13 @@ namespace News.Service.Fetch
         {
             Logger.WriteInfo("开始同花顺新闻抓取");
             base.Fetch(siteCfg, newsCateList);
-
-            var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
-            param.where.where.Add(SqlParamHelper.CreateWhere(
-                    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SiteId", site.SiteId.ToString()));
-            param.where.where.Add(SqlParamHelper.CreateWhere(
-                    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "ChannelVal", "headline"));
-            var chlCfgList = chlCfgAccess.Load(param);
+            //var param = SqlParamHelper.GetDefaultParam(1, int.MaxValue, "SiteId", true);
+            //param.where.where.Add(SqlParamHelper.CreateWhere(
+            //        PARAM_TYPE.EQUATE, LINK_TYPE.AND, "SiteId", site.SiteId.ToString()));
+            //param.where.where.Add(SqlParamHelper.CreateWhere(
+            //        PARAM_TYPE.EQUATE, LINK_TYPE.AND, "ChannelVal", "headline"));
+            var chlCfgList = chlCfgAccess.FindAll(p => p.ChannelVal == "headline"
+            && p.SiteId == site.SiteId);
             foreach (var chlCfg in chlCfgList)
             {
                 Logger.WriteInfo(string.Format("开始{0}分类抓取", chlCfg.ChannelName));

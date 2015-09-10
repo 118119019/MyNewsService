@@ -94,7 +94,11 @@
     <Compile Include="InterFace\GetNewsListService.cs" />
     <Compile Include="InterFace\NewsInterfaceServcie.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="MySql\ChannelConfigMySqlService.cs" />
+    <Compile Include="MySql\EFWrapperBase.cs" />
     <Compile Include="MySql\NewsCategoryMySqlServcie.cs" />
+    <Compile Include="MySql\NewsItemMySqlServcie.cs" />
+    <Compile Include="MySql\PredicateBuilder.cs" />
     <Compile Include="MySql\SiteConfigMySqlService.cs" />
     <Compile Include="PanGuTool\Index.cs" />
     <Compile Include="PanGuTool\PanGuAnalyzer.cs" />
