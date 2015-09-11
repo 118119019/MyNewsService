@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Linq.Expressions;
+using News.Service.MySql;
 
 namespace News.Service.InterFace
 {
@@ -19,8 +21,9 @@ namespace News.Service.InterFace
         public int pageCount = 10;
         public int pagenumber = 0;
         public SqlQueryParam param;
-        protected ChannelConfigAccess access;
-        
+        Expression<Func<ChannelConfig, bool>> exp;
+        protected ChannelConfigMySqlService access;
+
         public override void InitContent(HttpRequest request)
         {
             if (request["pageIndex"] != null)
@@ -32,19 +35,25 @@ namespace News.Service.InterFace
                 pageCount = int.Parse(request["pageCount"]);
             }
             param = SqlParamHelper.GetDefaultParam(pageIndex, pageCount, "ChannelId", true);
+            exp = PredicateBuilder.True<ChannelConfig>();
             if (request["ChannelName"] != null)
             {
                 param.where.where.Add(SqlParamHelper.CreateWhere(
                    PARAM_TYPE.EQUATE, LINK_TYPE.AND, "ChannelName", request["ChannelName"]));
-            }            
+                exp.And(p => p.ChannelName == request["ChannelName"]);
+            }
             base.InitContent(request);
         }
         public override string GetList()
         {
             myResult = new result();
             int count = 0;
-            access = new ChannelConfigAccess(Conn);
-            List<ChannelConfig> list = access.Load(param, out count);
+            access = new ChannelConfigMySqlService();
+            count = access.GetCount(exp);
+            Expression<Func<ChannelConfig, long>> order =
+                e => e.ChannelId;
+            List<ChannelConfig> list = access.GetPage(pageIndex, pageCount,
+                          order, false, exp);
             pagenumber = count / pageCount + 1;
             myResult.data = new ResponseData()
             {

@@ -123,9 +123,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Api.ashx" />
-    <Content Include="NewsIndex\segments.gen" />
-    <Content Include="NewsIndex\segments_4" />
-    <Content Include="NewsIndex\_6.cfs" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Web.Debug.config">

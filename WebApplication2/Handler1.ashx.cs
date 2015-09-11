@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using News.Service.PanGuTool;
+using News.Service.MySql;
+using System.Web.UI;
 
 namespace WebApplication2
 {
@@ -19,39 +22,31 @@ namespace WebApplication2
         {
             context.Response.ContentType = "application/json";
             var Response = context.Response;
-            if (context.Request["url"] != null)
+            //分词
+            var id = context.Request["id"];
+            if (id != null)
             {
-                string url = context.Request["url"];
-                try
+                long _id = long.Parse(id);
+                var access = new NewsItemMySqlServcie();
+                var newsItem = access.Find(p => p.NewsId == _id);
+                if (newsItem != null)
                 {
-                    ArticleJson articleJson = new ArticleJson();
-                    string content = CommonUtility.HttpUtility.Get(url, Encoding.UTF8);
-                    HtmlDocument doc = new HtmlDocument();
-                    doc.LoadHtml(content);
-                    var div = doc.DocumentNode.SelectSingleNode("//div[@id='content']");
-                    articleJson.Content = div.InnerText;
-                    div = doc.DocumentNode.SelectSingleNode("//div[@class='title article_info']");
-                    articleJson.Title = div.SelectSingleNode("h1").InnerText;
-                    div = doc.DocumentNode.SelectSingleNode("//div[@id='extra']");
-                    articleJson.date = div.SelectSingleNode("span[@class='date']").InnerText.Replace("阅读全文", "");
-
-
-                    var str = SerilizeService<ArticleJson>.CreateSerilizer(Serilize_Type.Json).Serilize(articleJson);
-
-
-                    Response.Output.Write(HelpObjectService.Serialize(articleJson));
-
-                 
-
-                    //byte[] jsons = HelpObjectService.Serialize(articleJson);
-
-                    //Response.BinaryWrite(jsons);
-                    //Response.Flush();
-                    //Response.Close(); 
+                    try
+                    {
+                        Index.CreateIndex(Index.INDEX_DIR);
+                        Index.IndexString(Index.INDEX_DIR, newsItem.SourceUrl, newsItem.Title, newsItem.CreateTime, newsItem.NewsText, newsItem.NewsId.ToString());
+                        Index.Close();
+                        Response.Write("1");
+                    }
+                    catch (Exception ex)
+                    {
+                        net91com.Core.Util.LogHelper.WriteException("分词异常", ex);
+                        Response.Write("0");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-
+                    Response.Write("1");
                 }
             }
             Response.End();
@@ -72,12 +67,4 @@ namespace WebApplication2
 
 
 
-
-    [Serializable]
-    public class ArticleJson
-    {
-        public string Title { get; set; }
-        public string date { get; set; }
-        public string Content { get; set; }
-    }
 }

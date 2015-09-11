@@ -27,26 +27,41 @@
     <File Include="bin/DataAccess.dll">
       <publishTime>07/09/2015 14:20:04</publishTime>
     </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>09/07/2015 11:16:04</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>09/07/2015 11:16:04</publishTime>
+    </File>
     <File Include="bin/HtmlAgilityPack.dll">
       <publishTime>07/29/2015 09:50:29</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>08/21/2014 18:20:33</publishTime>
     </File>
+    <File Include="bin/Lucene.Net.dll">
+      <publishTime>05/12/2010 10:34:10</publishTime>
+    </File>
     <File Include="bin/Model.dll">
       <publishTime>07/09/2015 14:20:04</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.dll">
+      <publishTime>09/07/2015 11:18:38</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.Entity.EF6.dll">
+      <publishTime>09/07/2015 11:18:43</publishTime>
     </File>
     <File Include="bin/net91com.Core.dll">
       <publishTime>06/11/2014 15:16:21</publishTime>
     </File>
     <File Include="bin/News.DataAccess.dll">
-      <publishTime>08/11/2015 16:51:12</publishTime>
+      <publishTime>09/11/2015 11:51:19</publishTime>
     </File>
     <File Include="bin/News.Model.dll">
-      <publishTime>08/11/2015 16:51:12</publishTime>
+      <publishTime>09/11/2015 11:51:19</publishTime>
     </File>
     <File Include="bin/News.Service.dll">
-      <publishTime>08/11/2015 16:51:12</publishTime>
+      <publishTime>09/11/2015 11:51:19</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>07/09/2015 14:20:04</publishTime>
@@ -56,6 +71,12 @@
     </File>
     <File Include="bin/NLog.dll">
       <publishTime>06/11/2014 15:16:21</publishTime>
+    </File>
+    <File Include="bin/PanGu.dll">
+      <publishTime>08/19/2010 10:03:34</publishTime>
+    </File>
+    <File Include="bin/PanGu.HighLight.dll">
+      <publishTime>08/13/2009 16:01:38</publishTime>
     </File>
     <File Include="bin/Quartz.dll">
       <publishTime>07/29/2015 09:50:30</publishTime>
@@ -67,10 +88,10 @@
       <publishTime>07/09/2015 14:20:04</publishTime>
     </File>
     <File Include="bin/ServiceHelp.dll">
-      <publishTime>08/11/2015 16:51:12</publishTime>
+      <publishTime>08/21/2015 11:56:05</publishTime>
     </File>
     <File Include="bin/WebApplication2.dll">
-      <publishTime>08/11/2015 16:51:12</publishTime>
+      <publishTime>09/11/2015 11:52:10</publishTime>
     </File>
     <File Include="Content/main.css">
       <publishTime>08/11/2015 15:38:04</publishTime>
@@ -85,13 +106,19 @@
       <publishTime>08/11/2015 15:37:44</publishTime>
     </File>
     <File Include="InterFaceTest.aspx">
-      <publishTime>08/07/2015 11:36:16</publishTime>
+      <publishTime>09/11/2015 11:14:41</publishTime>
+    </File>
+    <File Include="MySql/WebForm1.aspx">
+      <publishTime>09/07/2015 11:24:50</publishTime>
     </File>
     <File Include="News/ArticleDetail.aspx">
       <publishTime>08/11/2015 17:08:24</publishTime>
     </File>
     <File Include="NLog.config">
       <publishTime>07/29/2015 09:50:29</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>09/07/2015 11:18:44</publishTime>
     </File>
     <File Include="quartz_jobs.xml">
       <publishTime>07/29/2015 09:50:29</publishTime>
@@ -106,7 +133,7 @@
       <publishTime>08/11/2015 17:07:45</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/11/2015 17:08:30</publishTime>
+      <publishTime>09/11/2015 11:51:20</publishTime>
     </File>
   </ItemGroup>
 </Project>

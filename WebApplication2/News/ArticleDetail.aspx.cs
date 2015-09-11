@@ -9,13 +9,13 @@ using CommonService;
 using CommonService.Serilizer;
 using News.DataAccess.Business;
 using News.Model;
+using News.Service.MySql;
 
 namespace WebApplication2.News
 {
     public partial class ArticleDetail : Page
     {
-        protected static string dbConn = ConfigurationManager.ConnectionStrings["LinstenNews"].ConnectionString;
-        protected WebNewsItemAccess newsItemAccess = new WebNewsItemAccess(dbConn);
+        protected WebNewsItemMySqlServcie newsItemAccess = new WebNewsItemMySqlServcie();
         protected WebNewsItem newsItem = new WebNewsItem();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +28,8 @@ namespace WebApplication2.News
             else
             {
                 var id = Request["id"].ToString();
-                newsItem = newsItemAccess.GetContentByPk(id);
+                long _id = long.Parse(id);
+                newsItem = newsItemAccess.Find(p => p.NewsId == _id);
                 if (newsItem == null)
                 {
                     Response.Write("无数据");

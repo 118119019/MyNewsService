@@ -16,7 +16,7 @@ namespace News.Service.Fetch
     {
         public int siteid;
         public SiteConfig site;
-        protected static string UnsafeTags = "head|iframe|style|script|object|embed|applet|noframes|noscript|noembed";     
+        protected static string UnsafeTags = "head|iframe|style|script|object|embed|applet|noframes|noscript|noembed";
         protected ChannelConfigMySqlService chlCfgAccess = new ChannelConfigMySqlService();
         protected NewsItemMySqlServcie newsItemAccess = new NewsItemMySqlServcie();
 
@@ -43,7 +43,7 @@ namespace News.Service.Fetch
         }
         protected void CloseIndex()
         {
-            Index.Close();
+
         }
 
         protected void RemoveUnsafe(HtmlNode div)
@@ -73,7 +73,31 @@ namespace News.Service.Fetch
 
         protected void SaveSegMents(NewsItem newsItem)
         {
-     //Index.IndexString(Index.INDEX_DIR, newsItem.SourceUrl, newsItem.Title, newsItem.CreateTime, newsItem.NewsText, newsItem.NewsId.ToString());
+            var api = ConfigurationManager.AppSettings["WebSiteFengChi"];
+            var url = api + newsItem.NewsId.ToString();
+            bool IsFengChi = false;
+            while (!IsFengChi)
+            {
+                try
+                {
+                    var str = CommonUtility.HttpUtility.Get(url);
+                    if (str == "1")
+                    {
+                        IsFengChi = true;
+                    }
+                    else
+                    {
+                        System.Threading.Thread.Sleep(5000);
+                        IsFengChi = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Threading.Thread.Sleep(5000);
+                    IsFengChi = false;
+                }
+                 
+            }
         }
     }
 }

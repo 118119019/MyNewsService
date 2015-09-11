@@ -93,7 +93,8 @@ namespace WebApplication2
                     return new GetChannelConfigListService();
                 case "getnewscategorylist":
                     return new GetNewsCategoryService();
-
+                case "seeknewslist":
+                    return new SeekNewsListService();
                 default:
                     return null;
 

@@ -93,6 +93,7 @@
     <Compile Include="InterFace\GetNewsCategoryService.cs" />
     <Compile Include="InterFace\GetNewsListService.cs" />
     <Compile Include="InterFace\NewsInterfaceServcie.cs" />
+    <Compile Include="InterFace\SeekNewsListService.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MySql\ChannelConfigMySqlService.cs" />
     <Compile Include="MySql\EFWrapperBase.cs" />

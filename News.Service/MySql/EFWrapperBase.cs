@@ -52,13 +52,14 @@ namespace News.Service.MySql
         public EFWrapperBase(DbContext context = null)
         {
             this._context = context;
-            this._context.Database.Log = log =>
-            {
-                if (_lstLoggerPrintFilter.FirstOrDefault(x => log.StartsWith(x)) != null)
-                {
-                    //Logger.Info("Execute SQL -> " + Environment.NewLine + log);//支持打印SQL
-                }
-            };
+            //this._context.Database.Log = log =>
+            //{
+            //    if (_lstLoggerPrintFilter.FirstOrDefault(x => log.StartsWith(x)) != null)
+            //    {
+            //        //Logger.Info("Execute SQL -> " + Environment.NewLine + log);//支持打印SQL
+            //        Console.WriteLine("Execute SQL -> " + Environment.NewLine + log);
+            //    }
+            //};
         }
 
         #endregion
@@ -149,7 +150,10 @@ namespace News.Service.MySql
         {
             return DbSet.Where(exp).ToList();
         }
-
+        public virtual int GetCount(Expression<Func<T, bool>> exp)
+        {
+            return DbSet.Count(exp);
+        }
         /// <summary>
         /// 查询，返回Entity列表
         /// </summary>
@@ -185,7 +189,7 @@ namespace News.Service.MySql
             return _context.Database.SqlQuery<T>(sql, parameters).ToList();
         }
 
-        
+
 
         #endregion
 

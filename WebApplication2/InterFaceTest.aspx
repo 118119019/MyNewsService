@@ -22,9 +22,7 @@
                 <thead>
                     <tr>
                         <th style="width: 10%">标题</th>
-                        <th style="width: 10%">来源地址</th>
                         <th style="width: 45%">内容</th>
-                        <th style="width: 10%">创建时间</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,17 +30,13 @@
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <%#Eval("Title") %>
+                                    <%#Eval("TitleHighLighter") %>
                                 </td>
+
                                 <td>
-                                    <%#Eval("SourceUrl") %>
+                                    <%#Eval("Abstract") %>                                   
                                 </td>
-                                <td>
-                                    <%#Eval("NewsText") %>                                   
-                                </td>
-                                <td>
-                                    <%#Eval("CreateTime") %>
-                                </td>
+
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

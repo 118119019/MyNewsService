@@ -10,6 +10,7 @@ using Lucene.Net.QueryParsers;
 using Lucene.Net.Search;
 using News.DataAccess.Business;
 using PanGu;
+using PanGu.HighLight;
 
 namespace News.Service.PanGuTool
 {
@@ -189,59 +190,50 @@ namespace News.Service.PanGuTool
         }
 
 
-        public static List<NewsItem> Search(String indexDir, String q, int pageLen, int pageNo, out int recCount)
+        public static List<SeekWebNewsItem> Search(String indexDir, String q, int pageLen, int pageNo, out int recCount)
         {
             string keywords = q;
 
             IndexSearcher search = new IndexSearcher(indexDir);
             q = GetKeyWordsSplitBySpace(q, new PanGuTokenizer());
             QueryParser queryParser = new QueryParser("contents", new PanGuAnalyzer(true));
-
             Query query = queryParser.Parse(q);
+            QueryParser titleQueryParser = new QueryParser("title", new PanGuAnalyzer(true));
+            Query titleQuery = titleQueryParser.Parse(q);
+            BooleanQuery bq = new BooleanQuery();
+            bq.Add(query, BooleanClause.Occur.SHOULD);
+            bq.Add(titleQuery, BooleanClause.Occur.SHOULD);
 
-            Hits hits = search.Search(query);
+            Hits hits = search.Search(bq);
 
-            List<NewsItem> result = new List<NewsItem>();
+            List<SeekWebNewsItem> result = new List<SeekWebNewsItem>();
 
             recCount = hits.Length();
             int i = (pageNo - 1) * pageLen;
 
             while (i < recCount && result.Count < pageLen)
             {
-                NewsItem news = null;
-
+                SeekWebNewsItem news = null;
                 try
                 {
-                    news = new NewsItem();
+                    news = new SeekWebNewsItem();
                     news.NewsId = long.Parse(hits.Doc(i).Get("id"));
-                    news.Title = hits.Doc(i).Get("title");
-                    news.SourceUrl = hits.Doc(i).Get("url");
-                    news.NewsText = hits.Doc(i).Get("contents");
+                    string Title = hits.Doc(i).Get("title");
+                    string NewsText = hits.Doc(i).Get("contents");
                     String strTime = hits.Doc(i).Get("time");
-                    news.CreateTime = DateTime.ParseExact(strTime, "yyyyMMdd", null);
                     PanGu.HighLight.SimpleHTMLFormatter simpleHTMLFormatter =
                         new PanGu.HighLight.SimpleHTMLFormatter("<font color=\"red\">", "</font>");
 
                     PanGu.HighLight.Highlighter highlighter =
                         new PanGu.HighLight.Highlighter(simpleHTMLFormatter,
                         new Segment());
-
                     highlighter.FragmentSize = 50;
-
-                    // news.Abstract = highlighter.GetBestFragment(keywords, news.Content);
-
-                    //// 高亮显示设置
-                    ////TermQuery tQuery = new TermQuery(new Term("contents", q));
-
-                    //SimpleHTMLFormatter simpleHTMLFormatter = new SimpleHTMLFormatter("<font color=\"red\">", "</font>");
-                    //Highlighter highlighter = new Highlighter(simpleHTMLFormatter, new QueryScorer(query));
-                    ////关键内容显示大小设置 
-                    //highlighter.SetTextFragmenter(new SimpleFragmenter(50));
-                    ////取出高亮显示内容
-                    //Lucene.Net.Analysis.KTDictSeg.KTDictSegAnalyzer analyzer = new Lucene.Net.Analysis.KTDictSeg.KTDictSegAnalyzer();
-                    //TokenStream tokenStream = analyzer.TokenStream("contents", new StringReader(news.Content));
-                    //news.Abstract = highlighter.GetBestFragment(tokenStream, news.Content);
-
+                    news.Abstract = highlighter.GetBestFragment(keywords, NewsText);
+                    news.TitleHighLighter = highlighter.GetBestFragment(keywords, Title);
+                    if (string.IsNullOrEmpty(news.TitleHighLighter))
+                    {
+                        news.TitleHighLighter = Title;
+                    }
                 }
                 catch (Exception e)
                 {

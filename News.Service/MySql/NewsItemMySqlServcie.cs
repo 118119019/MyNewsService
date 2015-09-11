@@ -16,13 +16,32 @@ namespace News.Service.MySql
         { }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new NewsItemMap());
-            base.OnModelCreating(modelBuilder);
+           modelBuilder.Configurations.Add(new NewsItemMap());
+           base.OnModelCreating(modelBuilder);
         }
     }
     public class NewsItemMap : EntityTypeConfiguration<NewsItem>
     {
         public NewsItemMap()
+        {
+            this.ToTable("NewsItem");
+            this.HasKey(p => p.NewsId);
+        }
+    }
+    public class WebNewsItemDbContext : DbContext
+    {
+        public WebNewsItemDbContext()
+            : base("DbConMySql")
+        { }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new WebNewsItemMap());
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+    public class WebNewsItemMap : EntityTypeConfiguration<WebNewsItem>
+    {
+        public WebNewsItemMap()
         {
             this.ToTable("NewsItem");
             this.HasKey(p => p.NewsId);
@@ -34,5 +53,10 @@ namespace News.Service.MySql
             : base(new NewsItemDbContext())
         { }
     }
-
+    public class WebNewsItemMySqlServcie : EFWrapperBase<WebNewsItem>
+    {
+        public WebNewsItemMySqlServcie()
+            : base(new WebNewsItemDbContext())
+        { }
+    }
 }

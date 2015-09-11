@@ -36,16 +36,8 @@ namespace News.Service.InterFace
             newsItemAccess = new NewsItemMySqlServcie();
             Expression<Func<NewsItem, long>> order =
                 e => e.NewsId;
-            var args = new DbParameter[] {
-                   new SqlParameter { ParameterName = "@where", Value = 1} 
-                };
-            newsItemAccess.Context.Database.ExecuteSqlCommand(
-                "", args
-                );
-
-            count = newsItemAccess.FindAll(exp).Count;
-
-            List<NewsItem> list = newsItemAccess.GetPage(pageCount, pageCount,
+            count = newsItemAccess.GetCount(exp);
+            List<NewsItem> list = newsItemAccess.GetPage(pageIndex, pageCount,
                           order, false, exp);
             pagenumber = count / pageCount + 1;
             myResult.data = new ResponseData()
